@@ -12,13 +12,18 @@ const productorasRouter = require('express').Router()
 
 productorasRouter.get('/:id', getProductorasById)
 productorasRouter.get('/', getProductoras)
-productorasRouter.post('/', [isAdmin], upload.single('imagen'), postProductoras)
+productorasRouter.post(
+  '/',
+  [isAdmin],
+  upload('productoras').single('imagen'),
+  postProductoras
+) // Usando 'productoras' como carpeta en Cloudinary
 productorasRouter.put(
   '/:id',
   [isAdmin],
-  upload.single('imagen'),
+  upload('productoras').single('imagen'),
   putProductoras
-)
+) // Usando 'productoras' como carpeta en Cloudinary
 productorasRouter.delete('/:id', [isAdmin], deleteProductoras)
 
 module.exports = productorasRouter
