@@ -1,5 +1,5 @@
 const { isAdmin } = require('../../middlewares/auth')
-const upload = require('../../middlewares/file')
+const upload = require('../../middlewares/file') // Middleware que permite la reutilización
 const {
   getUsers,
   register,
@@ -10,7 +10,7 @@ const {
 const usersRoutes = require('express').Router()
 
 usersRoutes.get('/', [isAdmin], getUsers)
-usersRoutes.post('/register', upload.single('imagen'), register)
+usersRoutes.post('/register', upload('users').single('imagen'), register) // Usando 'users' como carpeta en Cloudinary
 usersRoutes.post('/login', login)
 usersRoutes.delete('/:id', [isAdmin], deleteUserOrImage)
 
