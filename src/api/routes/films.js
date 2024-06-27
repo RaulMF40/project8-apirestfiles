@@ -18,8 +18,8 @@ filmsRouter.get('/years/:year', getFilmsByYears)
 filmsRouter.get('/genre/:genre', getFilmsByGenre)
 filmsRouter.get('/:id', getFilmsById)
 filmsRouter.get('/', getFilms)
-filmsRouter.post('/', [isAuth], upload.single('imagen'), postFilms)
-filmsRouter.put('/:id', [isAdmin], upload.single('imagen'), putFilms)
+filmsRouter.post('/', [isAuth], upload('films').single('imagen'), postFilms) // Usando 'films' como carpeta en Cloudinary
+filmsRouter.put('/:id', [isAdmin], upload('films').single('imagen'), putFilms) // Usando 'films' como carpeta en Cloudinary
 filmsRouter.delete('/:id', [isAdmin], deleteFilms)
 
 module.exports = filmsRouter
