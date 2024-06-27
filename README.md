@@ -41,8 +41,8 @@
 | filmsRouter.get | /genre/:genre, getFilmsByGenre | Obtiene películas por género, el género es un parámetro en la ruta.
 | filmsRouter.get | /:id, getFilmsById | Obtiene detalles de una película por su ID
 | filmsRouter.get | /, getFilms | Obtiene todas las películas.
-| filmsRouter.post | /, [isAuth], upload.single('imagen'), postFilms | Sube una nueva película, requiere autenticación y un archivo de imagen.
-| filmsRouter.put | /:id, [isAdmin], upload.single('imagen'), putFilms | Actualiza una película por su ID, requiere permisos de administrador y permite actualizar la imagen.
+| filmsRouter.post | /, [isAuth], upload('films').single('imagen'), postFilms | Sube una nueva película, requiere autenticación y un archivo de imagen, y crea una carpeta en cloudinary con el nombre Films
+| filmsRouter.put | /:id, [isAdmin], upload('films').single('imagen'), putFilms | Actualiza una película por su ID, requiere permisos de administrador y permite actualizar la imagen, y crea una carpeta en cloudinary con el nombre Films
 | filmsRouter.delete | /:id, [isAdmin], deleteFilms | Elimina una película por su ID, requiere permisos de administrador.
 
 2) ENDPOINTS DE PRODUCTORAS.JS
@@ -51,8 +51,8 @@
 | ------ | ------ | ------ |
 | productorasRouter.get | /:id, getProductorasById | Obtiene detalles de una productora por su ID.
 | productorasRouter.get | /, getProductoras | Obtiene todas las productoras.
-| productorasRouter.post | /', [isAdmin], upload.single('imagen'), postProductoras | Añade una nueva productora (requiere permisos de administrador), y tambien permite subir una imagen (imagen).
-| productorasRouter.put | /:id, [isAdmin], upload.single('imagen'), putProductoras | Actualiza los detalles de una productora por su ID (requiere permisos de administrador), y también permite actualizar la imagen (imagen).
+| productorasRouter.post | /', [isAdmin], upload('productoras').single('imagen'), postProductoras | Añade una nueva productora (requiere permisos de administrador), y tambien permite subir una imagen (imagen), y crea una carpeta en cloudinary con el nombre Productoras
+| productorasRouter.put | /:id, [isAdmin], upload('productoras').single('imagen'), putProductoras | Actualiza los detalles de una productora por su ID (requiere permisos de administrador), y también permite actualizar la imagen (imagen), y crea una carpeta en cloudinary con el nombre Productoras
 | productorasRouter.delete | /:id, [isAdmin], deleteProductoras | Elimina una productora por su ID (requiere permisos de administrador).
 
 3) ENDPOINTS DE USERS.JS
@@ -60,7 +60,7 @@
 | METHOD | ENDPOINT | DESCRIPTION |
 | ------ | ------ | ------ |
 | usersRoutes.get | /, [isAdmin], getUsers | Obtiene todos los usuarios (requiere permisos de administrador).
-| usersRoutes.post | /register, upload.single('imagen'), register | Registra un nuevo usuario y permite subir una imagen.
+| usersRoutes.post | /register, upload('users').single('imagen'), register | Registra un nuevo usuario y permite subir una imagen y también una carpeta con el nombre Users
 | usersRoutes.post | /login, login | Inicia sesión de usuario.
 | usersRoutes.delete | /:id, [isAdmin], deleteUserOrImage | Elimina un usuario por su ID o su imagen (requiere permisos de administrador).
 
